@@ -16,11 +16,11 @@ nav > ul {
 }
 nav > ul li {
   padding: 1%;
-  padding-left: 5%;
-  padding-right: 5%;
+  padding-left: 3%;
+  padding-right: 3%;
 }
 #pre {
-  margin-left: 15%;
+  margin-left: 20%;
 }
 nav > ul li a {
   color: white;
@@ -39,11 +39,12 @@ nav > ul {
   display: flex;
 }
 div {
-  background-color: aliceblue;
+  background-color: white;
   padding: 2%;
 }
 footer {
   background-color: rgb(44, 44, 44);
+  margin: -8px;
 }
 label {
   display: flex;
@@ -57,4 +58,35 @@ input {
 }
 h1 {
   text-align: center;
+}
+div {
+  margin-right: 10%;
+  margin-left: 10%;
+}
+#sub {
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  background-color: orange;
+  cursor: pointer;
+  margin-left: 90%;
+}
+#sub :hover {
+  color: orange;
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+  margin-left: 90%;
+}
+table {
+  text-align: center;
+  border: 1px solid black;
+  margin-left: 12.3%;
+}
+th,
+td {
+  padding-left: 0.5%;
+  padding-right: 0.5%;
 }
