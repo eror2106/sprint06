@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
     <link rel="stylesheet" href="style/nav_bar.css?t=<? echo time(); ?>">
+    
+    <link rel="stylesheet" href="style/table.css?t=<? echo time(); ?>">
     <title>Vap Factory</title>
   </head>
   <body>
@@ -24,9 +26,9 @@
       <!-- <p><?php include 'readexe.php';?></p> -->
       <table>
         <tr>
-          <th>id</th>
-          <th>reference</th>
+          <th>  reference  </th>
           <th>article</th>
+          <th>type</th>
           <th>description</th>
           <th>prix_achat</th>
           <th>vente_unitaire</th>

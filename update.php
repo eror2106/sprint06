@@ -25,7 +25,7 @@
     <div>
     
       <h1>mise a jour de produit</h1>
-      <form action="add.php" method="POST">
+      <form  method="POST">
         <label>
           <p>la reference du produit</p>
           <input type="text" placeholder="La référence" name="reference" />
@@ -38,26 +38,38 @@
               
       <?php
       include "conect.php";
+    
       if (empty($_POST['reference'])){
         die();
         // $err_stock = "Stock is required";
            } else {
           
         $reference=$_POST['reference'];
-      }
-      $requete = $bdd->prepare("SELECT  `reference`FROM `stock` WHERE `reference`='$reference' "); 
-      $requete->execute(); 
-      $row = $requete->fetchAll(); 
-
-        if(!empty($row)){
-          echo "la reference ".$reference." existe voulez vous modifier ce produit";
-          header('location: add.php');
-          
-        }
-        else{
-          echo "la reference n'existe pas";
+        $requete = $bdd->prepare("SELECT `reference` FROM `stock` WHERE reference='$reference' "); 
+        $requete->execute(); 
+        $row = $requete->fetchAll(); 
+        if (sizeof($row)<0) {
+          echo"la reference n'existe pas";
           die();
-        }
+        }  else{
+          $requete = $bdd->prepare("SELECT  `reference`FROM `stock` WHERE `reference`='$reference' "); 
+          $requete->execute(); 
+          $row = $requete->fetchAll(); 
+    
+            if(!empty($row)){
+              echo "la reference ".$reference." existe voulez vous modifier ce produit";
+              header("location: add.php?ref='$reference'");
+              
+            }
+            else{
+              echo "la reference n'existe pas";
+              die();
+            }
+        } 
+      }
+      
+      
+     
       ?>
      
     <script src="js/script.js"></script>

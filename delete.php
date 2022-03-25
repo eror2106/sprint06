@@ -46,12 +46,19 @@
           die("Connection failed: " . $conn->connect_error);
         }
         if (empty($_POST['reference'])){
-          // $err_stock = "Stock is required";
+         
         
           die();
             } else {
             
           $reference=$_POST['reference'];
+          $requete = $bdd->prepare("SELECT `reference` FROM `stock` WHERE reference='$reference' "); 
+          $requete->execute(); 
+          $row = $requete->fetchAll(); 
+          if (sizeof($row)==0) {
+            echo"la reference n'existe pas";
+            die();
+          }  
         }
         // sql to delete a record
         $sql = "DELETE FROM `stock` WHERE reference = '$reference'";

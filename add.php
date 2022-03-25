@@ -31,7 +31,14 @@
           <p>nom de larticle</p>
           <input type="text" placeholder="Le nom de l'article" name="nom" />
         </label>
+        <label>type darticle:
+          <select name="type" >
+            <option value="E-cigarete">E-cigarete</option>
+            <option value="E-liquide  ">E-liquide</option>
+          </select>
+        </label>
         <label>
+          
           <p>La description de l'article</p>
           <input type="text" placeholder="La description de l'article" name="description"  />
         </label>
@@ -55,21 +62,27 @@
               
       <?php
       include'conect.php';
-
-     
+      $reference=$_GET['ref'];
+   
       $nom="";
       $description="";
       $prix="";
       $vente="";
       $stock="";
-      
-      
+      $conn="";
+      $type="";
       if (empty($_POST['nom'])){
         die();
         // $err_stock = "Stock is required";
            } else {
          
         $nom=$_POST['nom'];
+      }
+      if(empty($_POST['type'])){
+        die();
+        // $err_stock = "Stock is required";
+        } else { 
+        $type=$_POST['type'];
       }
       
       if (empty($_POST['description'])){
@@ -87,9 +100,6 @@
           
         $prix=(int)$_POST['prix'];
       }
-      
-     
-      
       if (empty($_POST['vente_unitaire'])){
         // $err_stock = "Stock is required";
         die();
@@ -104,27 +114,27 @@
            } else {
          
         $stock=(int)$_POST['quanttite'];
-        
-       
       }      
-      echo $nom;
-      echo $description;
-      echo $prix;
-      echo $vente;
-      echo $stock;
-
-      $sql = "UPDATE `stock` SET `article='$nom',`description`='$description',`prix_achat`='$prix',`vente_unitaire`='$vente',`quantite`='$stock' WHERE `reference`='bdffv'";
-
-      if ($conn->query($sql) === TRUE) {
-        echo "Record updated successfully";
-      } else {
-        echo "Error updating record: " . $conn->error;
+      $sql = "UPDATE `stock` SET `article`='$nom',`type`='$type',`description`='$description',`prix_achat`=$prix,`vente_unitaire`=$vente,`quantite`=$stock  WHERE `reference`=$reference ";
+      $servername="localhost";
+      $dbname="vapfactory";
+      $user = "root";
+      $pass = "";
+      // Create connection
+      $conn = mysqli_connect($servername, $user, $pass, $dbname);
+      // Check connection
+      if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
       }
-      
-      $conn->close();
-
+      if (mysqli_query($conn, $sql)===TRUE) {
+        echo "donnée mis a jour";
+      } 
+      else {
+       
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+      }
+      mysqli_close($conn);
       ?>
-     
     <script src="js/script.js"></script>
   </body>
 </html>

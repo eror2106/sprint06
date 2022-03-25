@@ -29,9 +29,16 @@
           <p>la reference du produit</p>
           <input type="text" placeholder="La référence" name="reference" />
         </label>
+
         <label>
           <p>nom de larticle</p>
           <input type="text" placeholder="Le nom de l'article" name="nom" />
+        </label>
+        <label>type darticle:
+          <select name="type" >
+            <option value="E-cigarete">E-cigarete</option>
+            <option value="E-liquide  ">E-liquide</option>
+          </select>
         </label>
         <label>
           <p>La description de l'article</p>
@@ -63,13 +70,23 @@
       $prix="";
       $vente="";
       $stock="";
+      $type="";
       if (empty($_POST['reference'])){
         die();
         // $err_stock = "Stock is required";
            } else {
-          
+            
         $reference=$_POST['reference'];
-      }
+        $requete = $bdd->prepare("SELECT `reference` FROM `stock` WHERE reference='$reference' "); 
+        $requete->execute(); 
+        $row = $requete->fetchAll(); 
+        
+         if (sizeof($row)>0) {
+           echo"la reference existe deja";
+           die();
+         }     
+            
+          }
       
       if (empty($_POST['nom'])){
         die();
@@ -78,7 +95,13 @@
          
         $nom=$_POST['nom'];
       }
-      
+      if(empty($_POST['type'])){
+        die();
+        // $err_stock = "Stock is required";
+        } else { 
+        $type=$_POST['type'];
+      }
+       
       if (empty($_POST['description'])){
         die();
         // $err_stock = "Stock is required";
@@ -113,9 +136,10 @@
         $stock=(int)$_POST['quanttite'];
         
        
-      }      
+      }  
+      
 
-      $sql = "INSERT INTO `stock`( `reference`, `article`, `description`, `prix_achat`, `vente_unitaire`, `quantite`) VALUES ('$reference','$nom','$description','$prix','$vente','$stock')";
+      $sql = "INSERT INTO `stock`( `reference`, `article`,`type`, `description`, `prix_achat`, `vente_unitaire`, `quantite`) VALUES ('$reference','$nom','$type','$description','$prix','$vente','$stock')";
       
       $servername="localhost";
       $dbname="vapfactory";
@@ -128,7 +152,7 @@
 
 
       if (mysqli_query($conn, $sql)) {
-        echo "New record created successfully";
+        echo "produits ajoutée";
       } 
         
       else {
