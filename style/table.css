@@ -1,10 +1,13 @@
 table {
   text-align: center;
   border: 1px solid black;
-  margin-left: 12.3%;
+  margin-left: 15%;
 }
-th,
-td {
-  padding-left: 0.5%;
-  padding-right: 0.5%;
+th {
+  /* border: 1px solid black; */
+  padding-right: 5%;
+}
+td,
+th {
+  padding: 8px;
 }

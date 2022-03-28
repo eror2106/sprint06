@@ -6,15 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
-<link rel="stylesheet" href="style/nav_bar.css?t=<? echo time(); ?>">    <title>Vap Factory</title>
+    <link rel="stylesheet" href="style/nav_bar.css">   
+<title>Vap Factory</title>
   </head>
   <body>
     <header>
-      <nav>
+    <nav>
       <ul>
+          <p id="logo">Vap Factory</p>
           <li id="pre"><a href="index.php">accueil</a></li>
           <li><a href="stock.php">stock</a></li>
-          <li><a href="ajout.php">ajout dans le stock</a></li>
+          <li><a id="page"href="ajout.php">ajout dans le stock</a></li>
           <li><a href="delete.php">suprim</a></li>
           <li><a href="update.php">mise a jour</a></li>
         </ul>
@@ -64,6 +66,7 @@
               
       <?php
       include'conect.php';
+      include'conn.php';
       $reference="";
       $nom="";
       $description="";
@@ -73,10 +76,9 @@
       $type="";
       if (empty($_POST['reference'])){
         die();
-        // $err_stock = "Stock is required";
            } else {
             
-        $reference=$_POST['reference'];
+        $reference=htmlspecialchars($_POST['reference']);
         $requete = $bdd->prepare("SELECT `reference` FROM `stock` WHERE reference='$reference' "); 
         $requete->execute(); 
         $row = $requete->fetchAll(); 
@@ -90,16 +92,15 @@
       
       if (empty($_POST['nom'])){
         die();
-        // $err_stock = "Stock is required";
            } else {
          
-        $nom=$_POST['nom'];
+        $nom=htmlspecialchars($_POST['nom']);
       }
       if(empty($_POST['type'])){
         die();
         // $err_stock = "Stock is required";
         } else { 
-        $type=$_POST['type'];
+        $type=htmlspecialchars($_POST['type']);
       }
        
       if (empty($_POST['description'])){
@@ -107,7 +108,7 @@
         // $err_stock = "Stock is required";
            } else {
           
-        $description=$_POST['description'];
+        $description=htmlspecialchars($_POST['description']);
       }
       
       if (empty($_POST['prix'])){
@@ -115,7 +116,7 @@
         // $err_stock = "Stock is required";
            } else {
           
-        $prix=(int)$_POST['prix'];
+        $prix=(int)htmlspecialchars($_POST['prix']);
       }
       
      
@@ -125,7 +126,7 @@
         die();
            } else {
          
-        $vente=(int)$_POST['vente_unitaire']; 
+        $vente=(int)htmlspecialchars($_POST['vente_unitaire']); 
       }
       
       if (empty($_POST['quanttite'])){
@@ -133,7 +134,7 @@
         // $err_stock = "Stock is required";
            } else {
          
-        $stock=(int)$_POST['quanttite'];
+        $stock=(int)htmlspecialchars($_POST['quanttite']);
         
        
       }  
@@ -141,11 +142,7 @@
 
       $sql = "INSERT INTO `stock`( `reference`, `article`,`type`, `description`, `prix_achat`, `vente_unitaire`, `quantite`) VALUES ('$reference','$nom','$type','$description','$prix','$vente','$stock')";
       
-      $servername="localhost";
-      $dbname="vapfactory";
-      // Create connection
-      $conn = mysqli_connect($servername, $user, $pass, $dbname);
-      // Check connection
+      
       if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
       }

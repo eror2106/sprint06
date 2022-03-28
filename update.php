@@ -6,18 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="style/nav_bar.css?t=<? echo time(); ?>">    
+    <link rel="stylesheet" href="style/nav_bar.css">    
     <title>Vap Factory</title>
   </head>
   <body>
     <header>
-      <nav>
+    <nav>
       <ul>
+          <p id="logo">Vap Factory</p>
           <li id="pre"><a href="index.php">accueil</a></li>
           <li><a href="stock.php">stock</a></li>
           <li><a href="ajout.php">ajout dans le stock</a></li>
           <li><a href="delete.php">suprim</a></li>
-          <li><a href="update.php">mise a jour</a></li>
+          <li><a id="page" href="update.php">mise a jour</a></li>
         </ul>
       </nav>
     </header>
@@ -44,7 +45,7 @@
         // $err_stock = "Stock is required";
            } else {
           
-        $reference=$_POST['reference'];
+        $reference=htmlspecialchars($_POST['reference']);
         $requete = $bdd->prepare("SELECT `reference` FROM `stock` WHERE reference='$reference' "); 
         $requete->execute(); 
         $row = $requete->fetchAll(); 
