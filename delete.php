@@ -43,9 +43,9 @@
         // // Create connection
         // $conn = new mysqli($servername, $user, $pass, $dbname);
         // Check connection
-        if ($conn->connect_error) {
-          die("Connection failed: " . $conn->connect_error);
-        }
+        // if ($conn->connect_error) {
+        //   die("Connection failed: " . $conn->connect_error);
+        // }
         if (empty($_POST['reference'])){
          
         
@@ -64,13 +64,13 @@
         // sql to delete a record
         $sql = "DELETE FROM `stock` WHERE reference = '$reference'";
         
-        if ($conn->query($sql) === TRUE) {
+        if ($msqlClient->query($sql) === TRUE) {
           echo "Record deleted successfully";
         } else {
-          echo "Error deleting record: " .  mysqli_error($conn);
+          echo "Error deleting record: " .  mysqli_error($msqlClient);
         }  
         
-        $conn->close();
+        $msqlClient->close();
       
 
 

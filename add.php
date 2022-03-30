@@ -141,17 +141,17 @@
       $sql = "UPDATE `stock` SET `article`='$nom',`description`='$description',`prix_achat`=$prix,`vente_unitaire`=$vente,`quantite`=$stock  WHERE `reference`=$reference ";
     
       include'conn.php';
-      if (!$conn) {
+      if (!$msqlClient) {
         die("Connection failed: " . mysqli_connect_error());
       }
-      if (mysqli_query($conn, $sql)===TRUE) {
+      if (mysqli_query($msqlClient, $sql)===TRUE) {
         echo "donnée mis a jour";
       } 
       else {
        
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        echo "Error: " . $sql . "<br>" . mysqli_error($msqlClient);
       }
-      mysqli_close($conn);
+      mysqli_close($msqlClient);
       // header("Refresh:0.1")      ?>
     <script src="js/script.js"></script>
   </body>
