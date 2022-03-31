@@ -143,20 +143,20 @@
       $sql = "INSERT INTO `stock`( `reference`, `article`,`type`, `description`, `prix_achat`, `vente_unitaire`, `quantite`) VALUES ('$reference','$nom','$type','$description','$prix','$vente','$stock')";
       
       
-      if (!$conn) {
+      if (!$msqlClient) {
         die("Connection failed: " . mysqli_connect_error());
       }
 
 
-      if (mysqli_query($conn, $sql)) {
+      if (mysqli_query($msqlClient, $sql)) {
         echo "produits ajoutée";
       } 
         
       else {
        
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        echo "Error: " . $sql . "<br>" . mysqli_error($msqlClient);
       }
-      mysqli_close($conn);
+      mysqli_close($msqlClient);
 
       ?>
      

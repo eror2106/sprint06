@@ -12,7 +12,7 @@
     <header>
     <nav>
       <ul>
-          <p id="logo">Vap Factory</p>
+      <p id="logo" onclick="home();">Vap Factory</p>
           <li id="pre"><a href="index.php">accueil</a></li>
           <li><a id="page"  href="stock.php">stock</a></li>
           <li><a href="ajout.php">ajout dans le stock</a></li>
@@ -23,7 +23,7 @@
     </header>
     <br />
     <div>
-      <!-- <p><?php include 'readexe.php';?></p> -->
+      <!-- <p></p> -->
       <table>
         <tr>
           <th>  reference  </th>
@@ -38,7 +38,10 @@
           <?php
       include "conect.php";
       $requete = $bdd->prepare("SELECT * from stock"); 
-      $requete->execute(); 
+      $check = $requete->execute(); 
+      if (!$check) {
+        echo "ici";
+      }
       $row = $requete->fetchAll(); 
           for($i=0;$i<=sizeof($row)-1;$i++){
             $res=0;   
@@ -68,5 +71,7 @@
       <?php  
       ?>
     </div>
+    <script src="script.js"></script>
+
   </body>
 </html>

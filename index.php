@@ -11,7 +11,7 @@
     <header>
       <nav>
       <ul>
-          <p id="logo">Vap Factory</p>
+          <p id="logo" onclick="home();">Vap Factory</p>
           <li id="pre"><a id="page" href="index.php">accueil</a></li>
           <li><a href="stock.php">stock</a></li>
           <li><a href="ajout.php">ajout dans le stock</a></li>
@@ -35,6 +35,6 @@ Vous pouvez faire ceci grace aux différentes rubriques tout en haut de la page
 
 
     </div>
-    <script src="js/script.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
