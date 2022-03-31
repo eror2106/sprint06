@@ -21,6 +21,7 @@
         </ul>
       </nav>
     </header>
+    <script src="script.js"></script>
     <br />
     <div>
       <!-- <p></p> -->
@@ -35,43 +36,47 @@
           <th>quantité</th>
         </tr>
         <tr>
-          <?php
-      include "conect.php";
-      $requete = $bdd->prepare("SELECT * from stock"); 
-      $check = $requete->execute(); 
-      if (!$check) {
-        echo "ici";
-      }
-      $row = $requete->fetchAll(); 
-          for($i=0;$i<=sizeof($row)-1;$i++){
-            $res=0;   
-            foreach($row[$i] as $article => $value) { 
-             
-              if (! is_int($article) ) {
-                if ($res==4||$res==5) {
-                  ?>
-                  <td><?php echo $value . " €" ;?></td>
-                <?php
-                } else {
-                  ?>
-                  <td><?php echo $value  ;?></td>
-                <?php 
-                }               
-                $res++;
-               
-                }   
-            }
-            $res=0;
-        ?>
-        </tr>
-        <?php
-      }
-      ?>
-      </table>
-      <?php  
-      ?>
-    </div>
-    <script src="script.js"></script>
 
+        <?php
+          
+          include "conect.php";
+          $requete = $bdd->prepare("SELECT * from stock"); 
+          $check = $requete->execute(); 
+          if (!$check) {
+            echo "ici";
+          }
+          $row = $requete->fetchAll(); 
+              for($i=0;$i<=sizeof($row)-1;$i++){
+                $res=0;   
+                foreach($row[$i] as $article => $value) { 
+                 
+                  if (! is_int($article) ) {
+                    if ($res==4||$res==5) {
+                      ?>
+                      <td><?php echo $value . " €" ;?></td>
+                    <?php
+                    } else {
+                      ?>
+                      <td><?php echo $value  ;?></td>
+                    <?php 
+                    }               
+                    $res++;
+                   
+                    }   
+                }
+                $res=0;
+            ?>
+            </tr>
+                <?php
+          }
+          ?>
+          </table>
+            <?php  
+          
+          ?>
+      </div>
+    
+    
+    
   </body>
 </html>

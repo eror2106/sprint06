@@ -13,7 +13,8 @@
     <header>
     <nav>
       <ul>
-          <p id="logo">Vap Factory</p>
+      <p id="logo" onclick="home();">Vap Factory</p>
+
           <li id="pre"><a href="index.php">accueil</a></li>
           <li><a href="stock.php">stock</a></li>
           <li><a id="page"href="ajout.php">ajout dans le stock</a></li>
@@ -63,7 +64,7 @@
       </form>
       
     </div>
-              
+    <script src="script.js"></script>      
       <?php
       include'conect.php';
       include'conn.php';
@@ -160,6 +161,6 @@
 
       ?>
      
-    <script src="js/script.js"></script>
+   
   </body>
 </html>

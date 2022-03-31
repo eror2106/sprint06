@@ -10,8 +10,7 @@
     <header>
     <nav>
       <ul>
-          <p id="logo">Vap Factory</p>
-          <li id="pre"><a href="index.php">accueil</a></li>
+      <p id="logo" onclick="home();">Vap Factory</p>          <li id="pre"><a href="index.php">accueil</a></li>
           <li><a href="stock.php">stock</a></li>
           <li><a href="ajout.php">ajout dans le stock</a></li>
           <li><a id="page"  href="delete.php">suprim</a></li>
@@ -33,7 +32,7 @@
       </form>
       
     </div>
-              
+    <script src="script.js"></script>  
       <?php
       include'conect.php';
       include'conn.php';
@@ -78,6 +77,6 @@
       
   ?>
      
-    <script src="js/script.js"></script>
+    
   </body>
 </html>
